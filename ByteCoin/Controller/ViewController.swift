@@ -23,11 +23,19 @@ class ViewController: UIViewController {
         currencyPicker.dataSource = self
         currencyPicker.delegate = self
     }
+
+ 
 }
 
 //MARK: - CoinManagerDelegate
 
 extension ViewController: CoinManagerDelegate {
+    func coinmanager(data: CoinData) {
+        self.bitcoinLabel.text = String(describing: data.rate)
+    }
+    
+  
+    
     
     func didUpdatePrice(price: String, currency: String) {
         
@@ -62,5 +70,7 @@ extension ViewController: UIPickerViewDataSource, UIPickerViewDelegate {
           let selectedCurrency = coinManager.currencyArray[row]
           coinManager.getCoinPrice(for: selectedCurrency)
       }
+    
 }
+
 
